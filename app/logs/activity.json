@@ -1,11 +1,15 @@
 [
   {
-    "timestamp": "2026-06-06T21:57:35.632257",
+    "timestamp": "2026-06-06T21:58:22.224632",
     "action": "student created",
-    "student": "{\"name\":\"Anuar\",\"course\":\"DevOps\",\"grade\":100.0}"
+    "student": {
+      "name": "Anuar",
+      "course": "DevOps",
+      "grade": 100.0
+    }
   },
   {
-    "timestamp": "2026-06-06T21:58:22.224632",
+    "timestamp": "2026-06-06T22:21:54.618111",
     "action": "student created",
     "student": {
       "name": "Anuar",

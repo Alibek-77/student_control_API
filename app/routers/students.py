@@ -1,11 +1,13 @@
-from fastapi import FastAPI,Depends,HTTPException,status,APIRouter,BackgroundTasks
+from fastapi import FastAPI,Depends,HTTPException,status,APIRouter,BackgroundTasks,Request
 from modelss.student import StudentResponse,StudentCreate,StudentUpdate
 from dependencies import pagination,verify_api_key
 from background_tasks import write_log
+import time,logging
 students = [
     {"id": 1, "name": "Alibek", "course": "Backend", "grade": 95},
     {"id": 2, "name": "Aizat", "course": "AI", "grade": 88},
 ]
+logger=logging.getLogger(__name__)
 router=APIRouter(
     prefix="/students",
     tags=["Students"]
