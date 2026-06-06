@@ -1,6 +1,7 @@
-from fastapi import FastAPI,Depends,HTTPException,status,APIRouter
+from fastapi import FastAPI,Depends,HTTPException,status,APIRouter,BackgroundTasks
 from modelss.student import StudentResponse,StudentCreate,StudentUpdate
 from dependencies import pagination,verify_api_key
+from background_tasks import write_log
 students = [
     {"id": 1, "name": "Alibek", "course": "Backend", "grade": 95},
     {"id": 2, "name": "Aizat", "course": "AI", "grade": 88},
@@ -21,10 +22,11 @@ def get_student_by_id(student_id:int):
             return s
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Student not found")
 @router.post("/",status_code=201,response_model=StudentResponse)
-def create_user(student:StudentCreate,key:str=Depends(verify_api_key)):
+def create_user(student:StudentCreate,background_tasks:BackgroundTasks,key:str=Depends(verify_api_key)):
     new_id=max([s["id"] for s in students])+1
     new_user={"id":new_id,**student.model_dump()}
     students.append(new_user)
+    background_tasks.add_task(write_log,"student created",student)
     return new_user
 @router.put("/{id}")
 def replace_user(id:int,student:StudentCreate,key:str=Depends(verify_api_key)):
