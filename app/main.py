@@ -1,8 +1,7 @@
-from fastapi import FastAPI,HTTPException,status,Request
+from fastapi import FastAPI,Request
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import Field,BaseModel
-from typing import Optional
-from routers import students,courses
+from routers import students
+from database import Base,engine
 import os,logging,time
 from dotenv import load_dotenv
 load_dotenv()
@@ -22,9 +21,9 @@ logging.basicConfig(
         logging.FileHandler("logs/app.log")             
     ]
 )
+Base.metadata.create_all(bind=engine)
 logger=logging.getLogger(__name__)
 app.include_router(students.router)
-app.include_router(courses.router)
 @app.middleware("http")
 async def log_requests(request:Request,call_next):
     start_time=time.time()

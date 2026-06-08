@@ -10,3 +10,75 @@
 2026-06-06 22:21:54,616 INFO     main: 201 за 0.003 sec
 2026-06-06 22:29:10,513 INFO     main: ->DELETE http://127.0.0.1:8000/students/3
 2026-06-06 22:29:10,519 INFO     main: 204 за 0.005 sec
+2026-06-06 23:17:19,274 INFO     main: ->GET http://127.0.0.1:8000/
+2026-06-06 23:17:19,275 INFO     main: 200 за 0.002 sec
+2026-06-06 23:17:27,809 INFO     main: ->GET http://127.0.0.1:8000/todos
+2026-06-06 23:17:27,809 INFO     main: 404 за 0.000 sec
+2026-06-06 23:17:54,829 INFO     main: ->GET http://127.0.0.1:8000/
+2026-06-06 23:17:54,830 INFO     main: 200 за 0.001 sec
+2026-06-06 23:17:54,872 INFO     main: ->GET http://127.0.0.1:8000/favicon.ico
+2026-06-06 23:17:54,873 INFO     main: 404 за 0.000 sec
+2026-06-06 23:17:58,931 INFO     main: ->GET http://127.0.0.1:8000/docs
+2026-06-06 23:17:58,931 INFO     main: 200 за 0.000 sec
+2026-06-06 23:17:59,664 INFO     main: ->GET http://127.0.0.1:8000/openapi.json
+2026-06-06 23:17:59,676 INFO     main: 200 за 0.012 sec
+2026-06-08 13:00:45,631 INFO     main: ->GET http://localhost:8000/
+2026-06-08 13:00:45,633 INFO     main: 200 за 0.002 sec
+2026-06-08 13:00:45,673 INFO     main: ->GET http://localhost:8000/favicon.ico
+2026-06-08 13:00:45,674 INFO     main: 404 за 0.000 sec
+2026-06-08 13:00:48,509 INFO     main: ->GET http://localhost:8000/docs
+2026-06-08 13:00:48,509 INFO     main: 200 за 0.000 sec
+2026-06-08 13:00:48,577 INFO     main: ->GET http://localhost:8000/openapi.json
+2026-06-08 13:00:48,586 INFO     main: 200 за 0.009 sec
+2026-06-08 13:01:13,281 INFO     main: ->POST http://localhost:8000/students/
+2026-06-08 13:01:13,294 INFO     routers.students: Student created: id=1, name=Alibek
+2026-06-08 13:01:13,295 INFO     main: 201 за 0.014 sec
+2026-06-08 13:03:00,172 INFO     main: ->GET http://localhost:8000/
+2026-06-08 13:03:00,172 INFO     main: 200 за 0.001 sec
+2026-06-08 13:03:07,050 INFO     main: ->GET http://localhost:8000/
+2026-06-08 13:03:07,050 INFO     main: 200 за 0.001 sec
+2026-06-08 13:03:18,241 INFO     main: ->GET http://localhost:8000/
+2026-06-08 13:03:18,242 INFO     main: 200 за 0.001 sec
+2026-06-08 13:03:20,615 INFO     main: ->GET http://localhost:8000/docs
+2026-06-08 13:03:20,616 INFO     main: 200 за 0.000 sec
+2026-06-08 13:03:20,686 INFO     main: ->GET http://localhost:8000/openapi.json
+2026-06-08 13:03:20,687 INFO     main: 200 за 0.001 sec
+2026-06-08 13:03:26,584 INFO     main: ->GET http://localhost:8000/students?course=AI
+2026-06-08 13:03:26,584 INFO     main: 307 за 0.001 sec
+2026-06-08 13:03:26,589 INFO     main: ->GET http://localhost:8000/students/?course=AI
+2026-06-08 13:03:26,591 INFO     routers.students: Returned 1 students
+2026-06-08 13:03:26,593 INFO     main: 200 за 0.004 sec
+2026-06-08 14:26:41,867 INFO     main: ->GET http://localhost:8000/
+2026-06-08 14:26:41,869 INFO     main: 200 за 0.002 sec
+2026-06-08 14:27:06,040 INFO     main: ->GET http://localhost:8000/students/1
+2026-06-08 14:27:06,045 INFO     main: 200 за 0.005 sec
+2026-06-08 14:29:36,256 INFO     main: ->POST http://localhost:8000/students/
+2026-06-08 14:29:36,260 INFO     routers.students: Student created: id=2, name=Sanzhar
+2026-06-08 14:29:36,261 INFO     main: 201 за 0.005 sec
+2026-06-08 14:29:44,624 INFO     main: ->POST http://localhost:8000/students/
+2026-06-08 14:29:44,633 INFO     routers.students: Student created: id=3, name=Sanzhar
+2026-06-08 14:29:44,634 INFO     main: 201 за 0.011 sec
+2026-06-08 14:29:58,356 INFO     main: ->DELETE http://localhost:8000/students/3
+2026-06-08 14:29:58,360 INFO     routers.students: Student 3 deleted!
+2026-06-08 14:29:58,360 INFO     main: 204 за 0.004 sec
+2026-06-08 14:30:23,030 INFO     main: ->POST http://localhost:8000/students/
+2026-06-08 14:30:23,035 INFO     routers.students: Student created: id=4, name=Taizhan
+2026-06-08 14:30:23,036 INFO     main: 201 за 0.006 sec
+2026-06-08 14:31:58,300 INFO     main: ->PUT http://localhost:8000/students/2
+2026-06-08 14:31:58,311 INFO     main: 200 за 0.011 sec
+2026-06-08 14:32:49,395 INFO     main: ->PATCH http://localhost:8000/students/2
+2026-06-08 14:32:49,401 INFO     main: 200 за 0.006 sec
+2026-06-08 14:33:10,180 INFO     main: ->PATCH http://localhost:8000/students/2
+2026-06-08 14:33:10,187 INFO     main: 200 за 0.007 sec
+2026-06-08 14:33:44,757 INFO     main: ->PATCH http://localhost:8000/students/2
+2026-06-08 14:33:44,767 INFO     main: 200 за 0.010 sec
+2026-06-08 14:37:01,728 INFO     main: ->GET http://localhost:8000/docs
+2026-06-08 14:37:01,728 INFO     main: 200 за 0.001 sec
+2026-06-08 14:37:01,818 INFO     main: ->GET http://localhost:8000/openapi.json
+2026-06-08 14:37:01,829 INFO     main: 200 за 0.011 sec
+2026-06-08 14:37:33,520 INFO     main: ->POST http://localhost:8000/students/
+2026-06-08 14:37:33,533 INFO     routers.students: Student created: id=5, name=Amirkhan
+2026-06-08 14:37:33,534 INFO     main: 201 за 0.014 sec
+2026-06-08 14:37:53,787 INFO     main: ->GET http://localhost:8000/students/3
+2026-06-08 14:37:53,792 ERROR    routers.students: Student 3 not found
+2026-06-08 14:37:53,793 INFO     main: 404 за 0.006 sec

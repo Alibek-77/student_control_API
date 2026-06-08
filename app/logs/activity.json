@@ -16,5 +16,50 @@
       "course": "DevOps",
       "grade": 100.0
     }
+  },
+  {
+    "timestamp": "2026-06-08T13:01:13.296276",
+    "action": "student created",
+    "student": {
+      "name": "Alibek",
+      "course": "AI Engineer",
+      "grade": 100.0
+    }
+  },
+  {
+    "timestamp": "2026-06-08T14:29:36.261912",
+    "action": "student created",
+    "student": {
+      "name": "Sanzhar",
+      "course": "Backend",
+      "grade": 80.0
+    }
+  },
+  {
+    "timestamp": "2026-06-08T14:29:44.636911",
+    "action": "student created",
+    "student": {
+      "name": "Sanzhar",
+      "course": "Backend",
+      "grade": 80.0
+    }
+  },
+  {
+    "timestamp": "2026-06-08T14:30:23.037633",
+    "action": "student created",
+    "student": {
+      "name": "Taizhan",
+      "course": "ML Engineer",
+      "grade": 95.0
+    }
+  },
+  {
+    "timestamp": "2026-06-08T14:37:33.535620",
+    "action": "student created",
+    "student": {
+      "name": "Amirkhan",
+      "course": "ProjectManager",
+      "grade": 100.0
+    }
   }
 ]

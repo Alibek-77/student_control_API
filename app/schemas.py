@@ -13,7 +13,5 @@ class StudentResponse(BaseModel):
     name:str
     course:str
     grade:float
-class CourseResponse(BaseModel):
-    id:int
-    name:str
-    students:int
+    
+    model_config={"from_attributes":True}

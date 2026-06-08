@@ -1,4 +1,4 @@
-from modelss.student import StudentCreate
+from schemas import StudentCreate
 from pathlib import Path
 from datetime import datetime
 import json

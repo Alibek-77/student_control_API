@@ -1,54 +1,65 @@
-from fastapi import FastAPI,Depends,HTTPException,status,APIRouter,BackgroundTasks,Request
-from modelss.student import StudentResponse,StudentCreate,StudentUpdate
+from fastapi import Depends,HTTPException,status,APIRouter,BackgroundTasks,Request
+from schemas import StudentResponse,StudentCreate,StudentUpdate
 from dependencies import pagination,verify_api_key
 from background_tasks import write_log
+from sqlalchemy.orm import Session
+from database import get_db
+from models import Student
 import time,logging
-students = [
-    {"id": 1, "name": "Alibek", "course": "Backend", "grade": 95},
-    {"id": 2, "name": "Aizat", "course": "AI", "grade": 88},
-]
 logger=logging.getLogger(__name__)
 router=APIRouter(
     prefix="/students",
     tags=["Students"]
 )
-@router.get("/")
-def get_users(pages:dict=Depends(pagination)):
-    start=pages["skip"]
-    end=pages["skip"]+pages["limit"]
-    return students[start:end]
-@router.get("/{student_id}")
-def get_student_by_id(student_id:int):
-    for s in students:
-        if s["id"]==student_id:
-            return s
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Student not found")
+@router.get("/",response_model=list[StudentResponse])
+def get_users(db:Session=Depends(get_db)):
+    students=db.query(Student).all()
+    logger.info(f"Returned {len(students)} students")
+    return students
+@router.get("/{student_id}",response_model=StudentResponse)
+def get_student_by_id(student_id:int,db:Session=Depends(get_db)):
+    student=db.query(Student).filter(Student.id==student_id).first()
+    if not student:
+        logger.error(f"Student {student_id} not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Student not found")
+    return student
 @router.post("/",status_code=201,response_model=StudentResponse)
-def create_user(student:StudentCreate,background_tasks:BackgroundTasks,key:str=Depends(verify_api_key)):
-    new_id=max([s["id"] for s in students])+1
-    new_user={"id":new_id,**student.model_dump()}
-    students.append(new_user)
+def create_user(student:StudentCreate,background_tasks:BackgroundTasks,key:str=Depends(verify_api_key),db:Session=Depends(get_db)):
+    new_user=Student(**student.model_dump())
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    logger.info(f"Student created: id={new_user.id}, name={new_user.name}")
     background_tasks.add_task(write_log,"student created",student)
     return new_user
 @router.put("/{id}")
-def replace_user(id:int,student:StudentCreate,key:str=Depends(verify_api_key)):
-    for i,s in enumerate(students):
-        if s["id"]==id:
-            students[i]={"id":id,**student.model_dump()}
-            return students[i]
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Student not found!")
+def replace_user(id:int,student:StudentCreate,db:Session=Depends(get_db),key:str=Depends(verify_api_key)):
+    db_user=db.query(Student).filter(Student.id==id).first()
+    if not db_user:
+        logger.error(f"Student {id} not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Student not found!")
+    for field,value in student.model_dump().items():
+        setattr(db_user,field,value)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
 @router.patch("/{id}",response_model=StudentResponse)
-def update_user(id:int,student:StudentUpdate,key:str=Depends(verify_api_key)):
-    for i,s in enumerate(students):
-        if s["id"]==id:
-            update_student=student.model_dump(exclude_none=True)
-            s.update(update_student)
-            return s
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Student not found")
+def update_user(id:int,student:StudentUpdate,db:Session=Depends(get_db),key:str=Depends(verify_api_key)):
+    db_user=db.query(Student).filter(Student.id==id).first()
+    if not db_user:
+        logger.error(f"Student {id} not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Student not found")
+    for field,value in student.model_dump(exclude_none=True).items():
+        setattr(db_user,field,value)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
 @router.delete("/{id}",status_code=204)
-def delete_user(id:int,key:str=Depends(verify_api_key)):
-    for i,s in enumerate(students):
-        if s["id"]==id:
-            students.pop(i)
-            return 
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Student not found!")
+def delete_user(id:int,key:str=Depends(verify_api_key),db:Session=Depends(get_db)):
+    db_user=db.query(Student).filter(Student.id==id).first()
+    if not db_user:
+        logger.error(f"Student {id} not found") 
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Student not found!")
+    db.delete(db_user)
+    db.commit()
+    logger.info(f"Student {id} deleted!")
