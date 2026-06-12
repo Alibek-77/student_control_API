@@ -1,6 +1,6 @@
 from fastapi import FastAPI,Request
 from fastapi.middleware.cors import CORSMiddleware
-from routers import students
+from routers import students,courses
 from database import Base,engine
 import os,logging,time
 from dotenv import load_dotenv
@@ -24,6 +24,7 @@ logging.basicConfig(
 Base.metadata.create_all(bind=engine)
 logger=logging.getLogger(__name__)
 app.include_router(students.router)
+app.include_router(courses.router)
 @app.middleware("http")
 async def log_requests(request:Request,call_next):
     start_time=time.time()

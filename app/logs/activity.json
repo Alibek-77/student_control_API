@@ -61,5 +61,29 @@
       "course": "ProjectManager",
       "grade": 100.0
     }
+  },
+  {
+    "timestamp": "2026-06-09T17:13:41.197116",
+    "action": "course created",
+    "course": {
+      "name": "AI",
+      "description": "AI coursew for students"
+    }
+  },
+  {
+    "timestamp": "2026-06-09T18:35:54.113816",
+    "action": "course created",
+    "course": {
+      "name": "Alibek",
+      "description": "kjlsadj"
+    }
+  },
+  {
+    "timestamp": "2026-06-10T18:12:41.375752",
+    "action": "course created",
+    "course": {
+      "name": "AI Engineer",
+      "description": "AI Enginner course for students of Computer Science in SDU university!"
+    }
   }
 ]

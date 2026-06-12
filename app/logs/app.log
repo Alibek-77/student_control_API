@@ -82,3 +82,138 @@
 2026-06-08 14:37:53,787 INFO     main: ->GET http://localhost:8000/students/3
 2026-06-08 14:37:53,792 ERROR    routers.students: Student 3 not found
 2026-06-08 14:37:53,793 INFO     main: 404 за 0.006 sec
+2026-06-08 14:51:18,104 INFO     main: ->GET http://localhost:8000/docs
+2026-06-08 14:51:18,104 INFO     main: 200 за 0.001 sec
+2026-06-08 14:51:18,165 INFO     main: ->GET http://localhost:8000/openapi.json
+2026-06-08 14:51:18,178 INFO     main: 200 за 0.012 sec
+2026-06-09 17:07:50,219 INFO     main: ->GET http://127.0.0.1:8000/
+2026-06-09 17:07:50,221 INFO     main: 200 за 0.002 sec
+2026-06-09 17:07:50,264 INFO     main: ->GET http://127.0.0.1:8000/favicon.ico
+2026-06-09 17:07:50,265 INFO     main: 404 за 0.001 sec
+2026-06-09 17:07:53,923 INFO     main: ->GET http://127.0.0.1:8000/docs
+2026-06-09 17:07:53,924 INFO     main: 200 за 0.000 sec
+2026-06-09 17:07:54,633 INFO     main: ->GET http://127.0.0.1:8000/openapi.json
+2026-06-09 17:07:54,650 INFO     main: 200 за 0.017 sec
+2026-06-09 17:09:10,742 INFO     main: ->GET http://127.0.0.1:8000/
+2026-06-09 17:09:10,744 INFO     main: 200 за 0.001 sec
+2026-06-09 17:10:37,812 INFO     main: ->POST http://127.0.0.1:8000/courses/
+2026-06-09 17:11:43,809 INFO     main: ->POST http://127.0.0.1:8000/courses/
+2026-06-09 17:11:43,824 INFO     routers.courses: Student created: id=1, name=AI
+2026-06-09 17:13:41,183 INFO     main: ->POST http://127.0.0.1:8000/courses/
+2026-06-09 17:13:41,195 INFO     routers.courses: Student created: id=2, name=AI
+2026-06-09 17:13:41,196 INFO     main: 201 за 0.013 sec
+2026-06-09 17:14:36,886 INFO     main: ->GET http://127.0.0.1:8000/courses/
+2026-06-09 17:14:36,889 INFO     routers.courses: Returned [<models.Course object at 0x00000214B0A07D90>, <models.Course object at 0x00000214B0A07ED0>] courses
+2026-06-09 17:14:36,890 INFO     main: 200 за 0.004 sec
+2026-06-09 17:14:57,598 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:16:12,186 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:18:17,829 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:19:41,783 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:21:14,208 INFO     main: ->GET http://127.0.0.1:8000/students/
+2026-06-09 17:21:14,222 INFO     routers.students: Returned 0 students
+2026-06-09 17:21:14,223 INFO     main: 200 за 0.015 sec
+2026-06-09 17:21:14,296 INFO     main: ->GET http://127.0.0.1:8000/favicon.ico
+2026-06-09 17:21:14,297 INFO     main: 404 за 0.001 sec
+2026-06-09 17:22:32,845 INFO     main: ->GET http://127.0.0.1:8000/students/
+2026-06-09 17:22:32,848 INFO     routers.students: Returned 0 students
+2026-06-09 17:22:32,849 INFO     main: 200 за 0.004 sec
+2026-06-09 17:22:46,621 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:34:05,404 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:34:45,103 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:34:45,107 INFO     main: 422 за 0.004 sec
+2026-06-09 17:48:04,261 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:48:36,997 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:50:39,619 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:51:32,706 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:52:42,088 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:53:46,383 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:54:58,084 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:55:53,259 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:56:30,855 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:59:24,313 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 17:59:51,868 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 18:00:08,961 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 18:00:08,974 INFO     routers.students: Student created: name=Alibek
+2026-06-09 18:14:46,166 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 18:14:46,170 INFO     main: 422 за 0.004 sec
+2026-06-09 18:15:00,849 INFO     main: ->GET http://127.0.0.1:8000/docs
+2026-06-09 18:15:00,849 INFO     main: 200 за 0.001 sec
+2026-06-09 18:15:00,976 INFO     main: ->GET http://127.0.0.1:8000/openapi.json
+2026-06-09 18:15:00,992 INFO     main: 200 за 0.016 sec
+2026-06-09 18:35:15,120 INFO     main: ->GET http://127.0.0.1:8000/docs
+2026-06-09 18:35:15,121 INFO     main: 200 за 0.001 sec
+2026-06-09 18:35:15,172 INFO     main: ->GET http://127.0.0.1:8000/openapi.json
+2026-06-09 18:35:15,186 INFO     main: 200 за 0.014 sec
+2026-06-09 18:35:31,853 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 18:35:31,863 ERROR    routers.students: Course 1 not found
+2026-06-09 18:35:31,864 INFO     main: 404 за 0.011 sec
+2026-06-09 18:35:54,100 INFO     main: ->POST http://127.0.0.1:8000/courses/
+2026-06-09 18:35:54,111 INFO     routers.courses: Student created: id=1, name=Alibek
+2026-06-09 18:35:54,112 INFO     main: 201 за 0.012 sec
+2026-06-09 18:36:01,189 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-09 18:36:01,200 INFO     routers.students: Student created:id=1 name=Alibek
+2026-06-10 17:48:27,778 INFO     main: ->GET http://127.0.0.1:8000/students
+2026-06-10 17:48:27,779 INFO     main: 307 за 0.001 sec
+2026-06-10 17:48:27,828 INFO     main: ->GET http://127.0.0.1:8000/students/
+2026-06-10 17:48:27,855 INFO     routers.students: Returned 1 students
+2026-06-10 17:48:27,856 INFO     main: 200 за 0.028 sec
+2026-06-10 17:48:27,894 INFO     main: ->GET http://127.0.0.1:8000/favicon.ico
+2026-06-10 17:48:27,895 INFO     main: 404 за 0.001 sec
+2026-06-10 17:49:04,484 INFO     main: ->GET http://127.0.0.1:8000/docs
+2026-06-10 17:49:04,484 INFO     main: 200 за 0.000 sec
+2026-06-10 17:49:04,556 INFO     main: ->GET http://127.0.0.1:8000/openapi.json
+2026-06-10 17:49:04,571 INFO     main: 200 за 0.015 sec
+2026-06-10 18:08:09,471 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-10 18:08:09,494 INFO     routers.students: Student created:id=2 name=Ali
+2026-06-10 18:09:58,003 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-10 18:09:58,004 INFO     main: 422 за 0.001 sec
+2026-06-10 18:10:10,264 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-10 18:10:10,274 INFO     routers.students: Student created:id=3 name=Ali
+2026-06-10 18:11:02,874 INFO     main: ->GET http://127.0.0.1:8000/courses/
+2026-06-10 18:11:02,878 INFO     routers.courses: Returned [<models.Course object at 0x0000025F361CAC40>] courses
+2026-06-10 18:11:02,878 INFO     main: 200 за 0.004 sec
+2026-06-10 18:11:25,573 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-10 18:11:25,579 INFO     routers.students: Student created:id=4 name=Ali
+2026-06-10 18:11:49,618 INFO     main: ->GET http://127.0.0.1:8000/courses/1
+2026-06-10 18:11:49,622 INFO     main: 200 за 0.004 sec
+2026-06-10 18:12:41,363 INFO     main: ->POST http://127.0.0.1:8000/courses/
+2026-06-10 18:12:41,373 INFO     routers.courses: Student created: id=2, name=AI Engineer
+2026-06-10 18:12:41,374 INFO     main: 201 за 0.011 sec
+2026-06-10 18:12:49,348 INFO     main: ->GET http://127.0.0.1:8000/courses/
+2026-06-10 18:12:49,350 INFO     routers.courses: Returned [<models.Course object at 0x0000025F363B9BF0>, <models.Course object at 0x0000025F363BE650>] courses
+2026-06-10 18:12:49,351 INFO     main: 200 за 0.003 sec
+2026-06-10 18:12:59,773 INFO     main: ->GET http://127.0.0.1:8000/students/
+2026-06-10 18:12:59,775 INFO     routers.students: Returned 4 students
+2026-06-10 18:12:59,776 INFO     main: 200 за 0.003 sec
+2026-06-10 18:13:10,404 INFO     main: ->POST http://127.0.0.1:8000/students/
+2026-06-10 18:13:10,409 INFO     routers.students: Student created:id=5 name=Ali
+2026-06-10 18:13:20,624 INFO     main: ->GET http://127.0.0.1:8000/students/3
+2026-06-10 18:13:20,629 INFO     main: 200 за 0.005 sec
+2026-06-10 18:13:23,816 INFO     main: ->GET http://127.0.0.1:8000/students/4
+2026-06-10 18:13:23,820 INFO     main: 200 за 0.004 sec
+2026-06-10 18:13:47,668 INFO     main: ->PUT http://127.0.0.1:8000/students/1
+2026-06-10 18:13:47,671 INFO     main: 401 за 0.002 sec
+2026-06-10 18:13:56,223 INFO     main: ->PUT http://127.0.0.1:8000/students/1
+2026-06-10 18:13:56,225 INFO     main: 401 за 0.002 sec
+2026-06-10 18:14:03,480 INFO     main: ->PUT http://127.0.0.1:8000/students/1
+2026-06-10 18:14:03,483 INFO     main: 422 за 0.002 sec
+2026-06-10 18:14:19,661 INFO     main: ->PUT http://127.0.0.1:8000/students/1
+2026-06-10 18:14:19,662 INFO     main: 422 за 0.001 sec
+2026-06-10 18:14:32,280 INFO     main: ->PUT http://127.0.0.1:8000/students/1
+2026-06-10 18:14:32,292 INFO     main: 200 за 0.012 sec
+2026-06-10 18:14:37,992 INFO     main: ->GET http://127.0.0.1:8000/students
+2026-06-10 18:14:37,993 INFO     main: 307 за 0.001 sec
+2026-06-10 18:14:38,013 INFO     main: ->GET http://127.0.0.1:8000/students/
+2026-06-10 18:14:38,015 INFO     routers.students: Returned 5 students
+2026-06-10 18:14:38,016 INFO     main: 200 за 0.004 sec
+2026-06-10 18:15:22,795 INFO     main: ->PATCH http://127.0.0.1:8000/students/1
+2026-06-10 18:15:22,804 INFO     main: 200 за 0.009 sec
+2026-06-10 18:16:39,652 INFO     main: ->GET http://127.0.0.1:8000/students/
+2026-06-10 18:16:39,654 INFO     routers.students: Returned 5 students
+2026-06-10 18:16:39,655 INFO     main: 200 за 0.003 sec
+2026-06-10 18:16:51,773 INFO     main: ->DELETE http://127.0.0.1:8000/students/5
+2026-06-10 18:16:51,781 INFO     routers.students: Student 5 deleted!
+2026-06-10 18:16:51,782 INFO     main: 204 за 0.009 sec
+2026-06-10 18:16:54,021 INFO     main: ->GET http://127.0.0.1:8000/students/
+2026-06-10 18:16:54,022 INFO     routers.students: Returned 4 students
+2026-06-10 18:16:54,023 INFO     main: 200 за 0.002 sec

@@ -1,58 +1,78 @@
-from fastapi import Request,FastAPI,BackgroundTasks,HTTPException,status
-import time,logging,json
-from datetime import datetime
-from pathlib import Path
-todos = [
-    {"id": 1, "title": "Выучить FastAPI", "done": False},
-    {"id": 2, "title": "Написать API", "done": True},
-]
-Path("logs").mkdir(exist_ok=True)
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s %(levelname)s: %(message)s",
-    handlers=[
-        logging.StreamHandler(),              
-        logging.FileHandler("logs/app.log")   
-    ]
-)
-app=FastAPI()
-logger=logging.getLogger(__name__)
-@app.middleware("http")
-async def log_requests(request:Request,call_next):
-    start_time=time.time()
-    logger.info(f"{request.method}->{request.url}")
-    response=await call_next(request)
-    duration=time.time()-start_time
-    logger.info(f"{response.status_code} in {duration:.3f}")
-    return response
-def write_log(action:str,title:str):
-    log_path=Path("logs")/"todos.json"
-    log_path.parent.mkdir(exist_ok=True,parents=True)
-    log_entry={
-        "timestamp":datetime.now().isoformat(),
-        "action":action,
-        "title":title
+from fastapi import FastAPI, HTTPException, status, Depends
+from pydantic import BaseModel, Field
+from passlib.context import CryptContext
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from jose import jwt, JWTError
+from datetime import datetime, timedelta
+from typing import Optional
+fake_users_db = []
+counter_users = 0
+SECRET_KEY = "fjkhsdfjksdhfjhjwefj02ru0239rjewlf"
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
+app = FastAPI()
+class UserCreate(BaseModel):
+    email: str
+    password: str = Field(min_length=2)
+class UserResponse(BaseModel):
+    id: int
+    email: str
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+def hash_password(password: str) -> str:
+    return pwd_context.hash(password[:72])
+def verify_password(plain: str, hashed: str) -> bool:
+    return pwd_context.verify(plain, hashed)
+def create_token(data: dict) -> str:
+    to_encode = data.copy()
+    to_encode["exp"] = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+def get_current_user(token: str = Depends(oauth2_scheme)) -> dict:
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        user_id = payload.get("sub")
+        if not user_id:
+            raise HTTPException(status_code=401, detail="Invalid token")
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid token")
+    for us in fake_users_db:
+        if int(user_id) == us["id"]:  # приводим типы
+            return us
+    raise HTTPException(status_code=404, detail="User not found")
+@app.post("/auth/register", status_code=201, response_model=UserResponse)
+def register(user: UserCreate):
+    global counter_users
+    for us in fake_users_db:
+        if us["email"] == user.email:
+            raise HTTPException(status_code=400, detail="Email already taken")
+    counter_users += 1
+    new_user = {
+        "id": counter_users,
+        "email": user.email,
+        "hashed_password": hash_password(user.password),
+        "role": "admin"
     }
-    logs=[]
-    if log_path.exists():
-        logs=json.loads(log_path.read_text(encoding="utf-8"))
-    logs.append(log_entry)
-    log_path.write_text(json.dumps(logs,indent=2,ensure_ascii=False))
-@app.get("/todos")
-def get_todos():
-    return todos
-@app.post("/todos",status_code=201)
-def create_todo(title:str,back_tasks:BackgroundTasks):
-    id=max([t["id"] for t in todos])+1
-    new_todo={"id":id,"title":title,"done":False}
-    todos.append(new_todo)
-    back_tasks.add_task(write_log,"created",title)
-    return new_todo
-@app.patch("/todos/{id}")
-def done_todo(id:int,done:bool):
-    for t in todos:
-        if t["id"]==id:
-            t["done"]=done
-            return t
-    logger.error("Todo not found")
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Todos not found")
+    fake_users_db.append(new_user)
+    return new_user
+@app.post("/auth/login", response_model=Token)
+def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    user = None
+    for us in fake_users_db:
+        if us["email"] == form_data.username:
+            user = us
+            break
+    if not user or not verify_password(form_data.password, user["hashed_password"]):
+        raise HTTPException(status_code=401, detail="Wrong email or password")
+    token = create_token({"sub": str(user["id"]), "role": user["role"]})
+    return {"access_token": token, "token_type": "bearer"}
+@app.get("/users/me", response_model=UserResponse)
+def get_me(current_user: dict = Depends(get_current_user)):
+    return current_user
+@app.get("/users/admin")
+def admin_page(current_user: dict = Depends(get_current_user)):
+    if current_user["role"] != "admin":
+        raise HTTPException(status_code=403, detail="Admins only")
+    return {"message": f"Welcome admin — {current_user['email']}"}
